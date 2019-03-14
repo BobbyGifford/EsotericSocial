@@ -1,11 +1,14 @@
-<h1>Create Post Component</h1>
 <mat-card>
-  <mat-form-field>
-    <textarea matInput id="postBody" rows="6" [(ngModel)]="enteredValue"></textarea>
-  </mat-form-field>
-  <button mat-raised-button color="primary" (click)="onAddPost()">Save Post</button>
+  <form #createPostForm="ngForm" (submit)="onAddPost(createPostForm)">
+    <mat-form-field color="accent">
+      <input #title="ngModel" matInput name="title" ngModel placeholder="Title" required type="text">
+      <mat-error *ngIf="title.invalid">Must enter a title</mat-error>
+    </mat-form-field>
+    <mat-form-field color="accent">
+      <textarea #content="ngModel" matInput name="content" ngModel placeholder="Description" required
+                rows="6"></textarea>
+      <mat-error *ngIf="content.invalid">Must enter a description</mat-error>
+    </mat-form-field>
+    <button color="accent" mat-raised-button type="submit">Save Post</button>
+  </form>
 </mat-card>
-
-
-<p>{{newPost}}</p>
-
