@@ -5,6 +5,14 @@
       <mat-error *ngIf="title.invalid">Must enter a title</mat-error>
     </mat-form-field>
     <mat-form-field color="accent">
+      <mat-select placeholder="Category" ngModel #chosenCategory="ngModel" name="chosenCategory" required>
+        <mat-option *ngFor="let choice of categories" [value]="choice.value">
+          {{choice.viewValue}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="chosenCategory.invalid">Must enter a category</mat-error>
+    </mat-form-field>
+    <mat-form-field color="accent">
       <textarea #content="ngModel" matInput name="content" ngModel placeholder="Description" required
                 rows="6"></textarea>
       <mat-error *ngIf="content.invalid">Must enter a description</mat-error>

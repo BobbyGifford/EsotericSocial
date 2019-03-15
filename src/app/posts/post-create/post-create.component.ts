@@ -9,6 +9,10 @@ import {PostsService} from '../posts.service';
   styleUrls: ['./post-create.component.css']
 })
 export class PostCreateComponent {
+  categories = [
+    {value: 'celebrities', viewValue: 'Celebrities'},
+    {value: 'politics', viewValue: 'Politics'},
+  ];
 
   constructor(public postsService: PostsService) {
   }
@@ -17,7 +21,7 @@ export class PostCreateComponent {
     if (form.invalid) {
       return;
     }
-    const post: PostModel = {title: form.value.title, content: form.value.content};
+    const post: PostModel = {title: form.value.title, content: form.value.content, category: form.value.chosenCategory};
     this.postsService.addPost(post);
     form.resetForm();
   }
