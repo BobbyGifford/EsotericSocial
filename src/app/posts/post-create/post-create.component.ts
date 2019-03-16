@@ -21,7 +21,7 @@ export class PostCreateComponent {
     if (form.invalid) {
       return;
     }
-    const post: PostModel = {title: form.value.title, content: form.value.content, category: form.value.chosenCategory};
+    const post: PostModel = {id: null, title: form.value.title, content: form.value.content, category: form.value.chosenCategory};
     this.postsService.addPost(post);
     form.resetForm();
   }

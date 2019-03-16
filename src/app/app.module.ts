@@ -8,6 +8,7 @@ import {PostCreateComponent} from './posts/post-create/post-create.component';
 import {MatButtonModule, MatCardModule, MatInputModule, MatToolbarModule, MatExpansionModule, MatSelectModule} from '@angular/material';
 import {HeaderComponent} from './header/header.component';
 import {PostListComponent} from './posts/post-list/post-list.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {PostListComponent} from './posts/post-list/post-list.component';
     MatButtonModule,
     MatToolbarModule,
     MatExpansionModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
