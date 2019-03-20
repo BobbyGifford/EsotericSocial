@@ -14,6 +14,7 @@ export class PostsService {
 
   getPosts() {
     this.http.get<{ message: string, posts: any }>('http://localhost:3000/api/posts')
+    // Changes _id to id to match field in PostModel
       .pipe(map((postData) => {
         return postData.posts.map(post => {
           return {

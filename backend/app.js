@@ -6,7 +6,7 @@ const PostModel = require('./models/post');
 
 const app = express();
 
-mongoose.connect(, {useNewUrlParser: true})
+mongoose.connect("", {useNewUrlParser: true})
   .then(() => {
     console.log("Connected to db");
   }).catch(() => {
