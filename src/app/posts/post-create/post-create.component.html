@@ -1,11 +1,13 @@
 <mat-card>
-  <form #createPostForm="ngForm" (submit)="onAddPost(createPostForm)">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form #createPostForm="ngForm" (submit)="onSavePost(createPostForm)" *ngIf="!isLoading">
     <mat-form-field color="accent">
-      <input #title="ngModel" matInput name="title" ngModel placeholder="Title" required type="text">
+      <input #title="ngModel" matInput name="title" [ngModel]="post?.title" placeholder="Title" required type="text">
       <mat-error *ngIf="title.invalid">Must enter a title</mat-error>
     </mat-form-field>
     <mat-form-field color="accent">
-      <mat-select placeholder="Category" ngModel #chosenCategory="ngModel" name="chosenCategory" required>
+      <mat-select placeholder="Category" [ngModel]="post?.category" #chosenCategory="ngModel" name="chosenCategory"
+                  required>
         <mat-option *ngFor="let choice of categories" [value]="choice.value">
           {{choice.viewValue}}
         </mat-option>
@@ -13,7 +15,7 @@
       <mat-error *ngIf="chosenCategory.invalid">Must enter a category</mat-error>
     </mat-form-field>
     <mat-form-field color="accent">
-      <textarea #content="ngModel" matInput name="content" ngModel placeholder="Description" required
+      <textarea #content="ngModel" matInput name="content" [ngModel]="post?.content" placeholder="Description" required
                 rows="6"></textarea>
       <mat-error *ngIf="content.invalid">Must enter a description</mat-error>
     </mat-form-field>
