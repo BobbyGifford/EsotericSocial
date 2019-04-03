@@ -1,23 +1,37 @@
 <mat-card>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <form #createPostForm="ngForm" (submit)="onSavePost(createPostForm)" *ngIf="!isLoading">
+  <form [formGroup]="form" (submit)="onSavePost()" *ngIf="!isLoading">
+
+    <!--Title input -->
     <mat-form-field color="accent">
-      <input #title="ngModel" matInput name="title" [ngModel]="post?.title" placeholder="Title" required type="text">
-      <mat-error *ngIf="title.invalid">Must enter a title</mat-error>
+      <input formControlName="title" matInput placeholder="Title" type="text">
+      <mat-error *ngIf="form.get('title').invalid">Must enter a title</mat-error>
     </mat-form-field>
+
+    <!--Category Input-->
     <mat-form-field color="accent">
-      <mat-select placeholder="Category" [ngModel]="post?.category" #chosenCategory="ngModel" name="chosenCategory"
-                  required>
+      <mat-select formControlName="category" placeholder="Category">
         <mat-option *ngFor="let choice of categories" [value]="choice.value">
           {{choice.viewValue}}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="chosenCategory.invalid">Must enter a category</mat-error>
+      <mat-error *ngIf="form.get('category').invalid">Must enter a category</mat-error>
     </mat-form-field>
+
+    <!--Image upload button-->
+    <div>
+      <button mat-raised-button color="primary" type="button" (click)="imageUpload.click()">Pick Image</button>
+      <input type="file" #imageUpload (change)="onImagePicked($event)">
+    </div>
+
+    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
+      <img [src]="imagePreview" [alt]="form.value.title"/>
+    </div>
+
+    <!--Description-->
     <mat-form-field color="accent">
-      <textarea #content="ngModel" matInput name="content" [ngModel]="post?.content" placeholder="Description" required
-                rows="6"></textarea>
-      <mat-error *ngIf="content.invalid">Must enter a description</mat-error>
+      <textarea matInput placeholder="Description" rows="6" formControlName="content"></textarea>
+      <mat-error *ngIf="form.get('content').invalid">Must enter a description</mat-error>
     </mat-form-field>
     <button color="accent" mat-raised-button type="submit">Save Post</button>
   </form>
