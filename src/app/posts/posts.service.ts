@@ -45,6 +45,7 @@ export class PostsService {
       title: string;
       category: string;
       content: string;
+      imagePath: string;
     }>(`http://localhost:3000/api/posts/${id}`);
   }
 
@@ -69,13 +70,43 @@ export class PostsService {
       });
   }
 
-  updatePost(postData: PostModel) {
+  updatePost(
+    id: string,
+    title: string,
+    content: string,
+    category: string,
+    image: File | string
+  ) {
+    let postData: PostModel | FormData;
+    if (typeof image === "object") {
+      postData = new FormData();
+      postData.append("id", id);
+      postData.append("title", title);
+      postData.append("category", category);
+      postData.append("content", content);
+      postData.append("image", image, title);
+    } else {
+      postData = {
+        id: id,
+        title: title,
+        category: category,
+        content: content,
+        imagePath: image
+      };
+    }
     this.http
-      .put(`http://localhost:3000/api/posts/${postData.id}`, postData)
+      .put("http://localhost:3000/api/posts/" + id, postData)
       .subscribe(response => {
         const updatedPosts = [...this.posts];
-        const oldPostIndex = updatedPosts.findIndex(p => p.id === p.id);
-        updatedPosts[oldPostIndex] = postData;
+        const oldPostIndex = updatedPosts.findIndex(p => p.id === id);
+        const post: PostModel = {
+          id: id,
+          title: title,
+          category: category,
+          content: content,
+          imagePath: ""
+        };
+        updatedPosts[oldPostIndex] = post;
         this.posts = updatedPosts;
         this.postsUpdated.next([...this.posts]);
         this.router.navigate(["/"]);

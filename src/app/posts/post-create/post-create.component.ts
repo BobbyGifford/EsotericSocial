@@ -51,7 +51,7 @@ export class PostCreateComponent implements OnInit {
             title: postData.title,
             category: postData.category,
             content: postData.content,
-            imagePath: null
+            imagePath: postData.imagePath
           };
 
           // Change image default field
@@ -59,7 +59,7 @@ export class PostCreateComponent implements OnInit {
             title: this.post.title,
             category: this.post.category,
             content: this.post.content,
-            image: null
+            image: this.post.imagePath
           });
         });
       } else {
@@ -97,13 +97,13 @@ export class PostCreateComponent implements OnInit {
         this.form.value.image
       );
     } else {
-      this.postsService.updatePost({
-        id: this.postId,
-        title: this.form.value.title,
-        content: this.form.value.content,
-        category: this.form.value.category,
-        imagePath: null
-      });
+      this.postsService.updatePost(
+        this.postId,
+        this.form.value.title,
+        this.form.value.content,
+        this.form.value.category,
+        this.form.value.image
+      );
     }
     this.form.reset();
   }
