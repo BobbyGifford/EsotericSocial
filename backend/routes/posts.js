@@ -3,6 +3,7 @@ const multer = require("multer");
 
 const router = express.Router();
 const MIME_TYPE_MAP = {
+  "images/PNG": "png",
   "images/png": "png",
   "image/jpeg": "jpg",
   "image/jpg": "jpg"
