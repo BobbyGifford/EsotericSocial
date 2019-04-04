@@ -87,7 +87,23 @@ router.put(
 );
 
 router.get("", (req, res) => {
-  PostModel.find().then(documents => {
+  const pageSize = +req.query.pagesize;
+  const currentPage = +req.query.page;
+  const category = req.query.category;
+
+  let postQuery;
+
+  if (category === "all") {
+    postQuery = PostModel.find();
+  } else {
+    postQuery = PostModel.find({ category: category });
+  }
+
+  if (pageSize && currentPage) {
+    postQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
+  }
+
+  postQuery.then(documents => {
     res.status(200).json({
       message: "Got Posts",
       posts: documents
