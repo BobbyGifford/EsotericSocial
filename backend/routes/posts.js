@@ -95,7 +95,7 @@ router.get("", (req, res) => {
   let fetchedPosts;
 
   if (category === "all") {
-    postQuery = PostModel.find();
+    postQuery = PostModel.find().sort("-date");
   } else {
     postQuery = PostModel.find({ category: category });
   }
@@ -107,7 +107,7 @@ router.get("", (req, res) => {
   postQuery
     .then(documents => {
       fetchedPosts = documents;
-      return PostModel.count();
+      return PostModel.countDocuments();
     })
     .then(count => {
       res.status(200).json({
