@@ -2,16 +2,13 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
+const keys = require("./config/keys");
 const postsRoutes = require("./routes/posts");
 const userRoutes = require("./routes/user");
 const app = express();
 
 mongoose
-  .connect(
-    "mongodb+srv://bobby:bobby@esotericsocial-bhe06.mongodb.net/test?retryWrites=true",
-    { useNewUrlParser: true, useCreateIndex: true }
-  )
+  .connect(keys.mongoURI, { useNewUrlParser: true, useCreateIndex: true })
   .then(() => {
     console.log("Connected to db");
   })
