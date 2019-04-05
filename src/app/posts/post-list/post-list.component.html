@@ -10,7 +10,7 @@
     </div>
 
     <p>{{ post.category }}</p>
-    <mat-action-row>
+    <mat-action-row *ngIf="userIsAuthenticated">
       <a [routerLink]="['/edit', post.id]" mat-button mat-raised-button>EDIT</a>
       <button
         color="warn"
