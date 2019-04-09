@@ -15,8 +15,8 @@ export class PostListComponent implements OnInit, OnDestroy {
   isLoading = false;
   private postsSub: Subscription;
   totalPosts = 0;
-  postsPerPage = 5;
-  pageSizeOptions = [1, 2, 5, 10];
+  postsPerPage = 25;
+  pageSizeOptions = [10, 25, 50, 75];
   currentPage = 1;
   currentCategory = "all";
   categories = [
@@ -72,7 +72,7 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   changeCategory(category) {
     this.currentCategory = category;
-    this.postsService.getPosts(category, this.postsPerPage, this.currentPage);
+    this.postsService.getPosts(category, 5, 1);
   }
 
   onDelete(id: string) {

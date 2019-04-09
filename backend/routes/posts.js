@@ -40,7 +40,8 @@ router.post(
       title: req.body.title,
       category: req.body.category,
       content: req.body.content,
-      imagePath: url + "/images/" + req.file.filename
+      imagePath: url + "/images/" + req.file.filename,
+      creator: req.userData.userId
     });
     post.save().then(result => {
       console.log(result);
@@ -70,19 +71,31 @@ router.put(
       imagePath = url + "/images/" + req.file.filename;
     }
 
-    const post = new PostModel({
-      _id: req.body.id,
+    // const post = new PostModel({
+    //   _id: req.body.id,
+    //   title: req.body.title,
+    //   category: req.body.category,
+    //   content: req.body.content,
+    //   imagePath: imagePath
+    // });
+
+    const updateInfo = {
       title: req.body.title,
       category: req.body.category,
       content: req.body.content,
       imagePath: imagePath
-    });
-    console.log(post);
+    };
 
-    PostModel.updateOne({ _id: req.params.id }, post)
+    PostModel.updateOne(
+      { _id: req.params.id, creator: req.userData.userId },
+      updateInfo
+    )
       .then(result => {
-        console.log(result);
-        res.status(200).json({ message: "Update successfull" });
+        if (result.nModified > 0) {
+          res.status(200).json({ message: "Update successfull" });
+        } else {
+          res.status(401).json({ message: "Not authorized" });
+        }
       })
       .catch(err => {
         console.log(err);
@@ -111,7 +124,11 @@ router.get("", (req, res) => {
   postQuery
     .then(documents => {
       fetchedPosts = documents;
-      return PostModel.countDocuments();
+      if (category === "all") {
+        return PostModel.countDocuments();
+      } else {
+        return PostModel.find({ category: category }).countDocuments();
+      }
     })
     .then(count => {
       res.status(200).json({
@@ -133,14 +150,18 @@ router.get("/:id", (req, res, next) => {
 });
 
 router.delete("/:id", checkAuth, (req, res, next) => {
-  PostModel.deleteOne({ _id: req.params.id })
+  PostModel.deleteOne({ _id: req.params.id, creator: req.userData.userId })
     .then(result => {
       console.log(result);
+      if (result.n > 0) {
+        res.status(200).json({ message: "Deleted successfull" });
+      } else {
+        res.status(401).json({ message: "Not authorized" });
+      }
     })
     .catch(err => {
       console.log(err);
     });
-  res.status(200).json({ message: "Post deleted" });
 });
 
 module.exports = router;

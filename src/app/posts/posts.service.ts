@@ -31,7 +31,8 @@ export class PostsService {
                 content: post.content,
                 category: post.category,
                 id: post._id,
-                imagePath: post.imagePath
+                imagePath: post.imagePath,
+                creator: post.creator
               };
             }),
             maxPosts: postData.maxPosts
@@ -39,6 +40,7 @@ export class PostsService {
         })
       )
       .subscribe(transfromedPostsData => {
+        console.log(transfromedPostsData);
         this.posts = transfromedPostsData.posts;
         this.postsUpdated.next({
           posts: [...this.posts],

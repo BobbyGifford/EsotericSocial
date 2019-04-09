@@ -3,8 +3,9 @@
 <mat-chip-list>
   <div class="category-list">
     <mat-chip
-      *ngFor="let category of categories"
+      color="primary"
       selected
+      *ngFor="let category of categories"
       (click)="changeCategory(category.name)"
     >
       {{ category.label }}
