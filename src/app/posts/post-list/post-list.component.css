@@ -23,3 +23,13 @@ mat-paginator {
   width: 100%;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
 }
+
+.category-list {
+  margin: 1rem auto;
+}
+
+.content {
+  display: block;
+  white-space: pre;
+  margin: 1em 0;
+}

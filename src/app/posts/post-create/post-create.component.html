@@ -13,7 +13,7 @@
     <mat-form-field color="accent">
       <mat-select formControlName="category" placeholder="Category">
         <mat-option *ngFor="let choice of categories" [value]="choice.value">
-          {{ choice.viewValue }}
+          {{ choice.label }}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="form.get('category').invalid"
@@ -23,11 +23,11 @@
 
     <!--Image upload button-->
     <div style="margin-bottom: .5rem">
-      <button mat-raised-button type="button" (click)="imageUpload.click()">
+      <button mat-stroked-button type="button" (click)="imageUpload.click()">
         <mat-icon aria-label="Example icon-button with a heart icon"
           >add_a_photo</mat-icon
         >
-        Image Upload
+        Upload
       </button>
       <input type="file" #imageUpload (change)="onImagePicked($event)" />
     </div>

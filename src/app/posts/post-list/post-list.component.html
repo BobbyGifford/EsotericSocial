@@ -1,9 +1,21 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 
+<mat-chip-list>
+  <div class="category-list">
+    <mat-chip
+      *ngFor="let category of categories"
+      selected
+      (click)="changeCategory(category.name)"
+    >
+      {{ category.label }}
+    </mat-chip>
+  </div>
+</mat-chip-list>
+
 <mat-accordion *ngIf="posts.length > 0 && !isLoading" multi="true">
   <mat-expansion-panel *ngFor="let post of posts">
     <mat-expansion-panel-header>{{ post.title }}</mat-expansion-panel-header>
-    <p>{{ post.content }}</p>
+    <p class="content">{{ post.content }}</p>
 
     <div class="post-image">
       <img [src]="post.imagePath" [alt]="post.title" />

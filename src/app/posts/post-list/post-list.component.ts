@@ -19,6 +19,15 @@ export class PostListComponent implements OnInit, OnDestroy {
   pageSizeOptions = [1, 2, 5, 10];
   currentPage = 1;
   currentCategory = "all";
+  categories = [
+    { label: "All", name: "all" },
+    { label: "Objects", name: "objects" },
+    { label: "People", name: "people" },
+    { label: "Locations", name: "locations" },
+    { label: "History", name: "history" },
+    { label: "Celebrities", name: "celebrities" },
+    { label: "Politics", name: "politics" }
+  ];
   private authStatusSub: Subscription;
   userIsAuthenticated = false;
 
@@ -59,6 +68,11 @@ export class PostListComponent implements OnInit, OnDestroy {
       this.postsPerPage,
       this.currentPage
     );
+  }
+
+  changeCategory(category) {
+    this.currentCategory = category;
+    this.postsService.getPosts(category, this.postsPerPage, this.currentPage);
   }
 
   onDelete(id: string) {

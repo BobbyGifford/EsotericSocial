@@ -13,8 +13,12 @@ import { mimeType } from "./mime-type.validator";
 })
 export class PostCreateComponent implements OnInit {
   categories = [
-    { value: "celebrities", viewValue: "Celebrities" },
-    { value: "politics", viewValue: "Politics" }
+    { label: "Objects", value: "objects" },
+    { label: "People", value: "people" },
+    { label: "Locations", value: "locations" },
+    { label: "History", value: "history" },
+    { label: "Celebrities", value: "celebrities" },
+    { label: "Politics", value: "politics" }
   ];
   private mode = "create";
   private postId: string;

@@ -1,5 +1,12 @@
 main {
   margin-top: 1rem;
-  width: 60%;
+  width: 50%;
   margin: 1rem auto;
+}
+
+/* Mobile View */
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  main {
+    width: 90%;
+  }
 }

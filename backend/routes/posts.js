@@ -101,7 +101,7 @@ router.get("", (req, res) => {
   if (category === "all") {
     postQuery = PostModel.find().sort("-date");
   } else {
-    postQuery = PostModel.find({ category: category });
+    postQuery = PostModel.find({ category: category }).sort("-date");
   }
 
   if (pageSize && currentPage) {

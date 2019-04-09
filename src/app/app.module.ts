@@ -14,7 +14,8 @@ import {
   MatSelectModule,
   MatProgressSpinnerModule,
   MatPaginatorModule,
-  MatIconModule
+  MatIconModule,
+  MatChipsModule
 } from "@angular/material";
 import { HeaderComponent } from "./header/header.component";
 import { PostListComponent } from "./posts/post-list/post-list.component";
@@ -48,6 +49,7 @@ import { AuthInterceptor } from "./auth/auth-intercepter";
     MatPaginatorModule,
     HttpClientModule,
     MatIconModule,
+    MatChipsModule,
     FormsModule
   ],
   providers: [
