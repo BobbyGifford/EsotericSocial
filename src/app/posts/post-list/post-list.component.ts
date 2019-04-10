@@ -21,12 +21,12 @@ export class PostListComponent implements OnInit, OnDestroy {
   currentCategory = "all";
   categories = [
     { label: "All", name: "all" },
-    { label: "Objects", name: "objects" },
+    { label: "Symbols", value: "symbols" },
     { label: "People", name: "people" },
-    { label: "Locations", name: "locations" },
+    { label: "Archaeology", name: "archaeology" },
     { label: "History", name: "history" },
-    { label: "Celebrities", name: "celebrities" },
-    { label: "Politics", name: "politics" }
+    { label: "Consciousness", name: "consciousness" },
+    { label: "Religon", value: "religon" }
   ];
   private authStatusSub: Subscription;
   userIsAuthenticated = false;

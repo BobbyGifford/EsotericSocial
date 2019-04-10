@@ -15,12 +15,12 @@ import { AuthService } from "src/app/auth/auth.service";
 })
 export class PostCreateComponent implements OnInit, OnDestroy {
   categories = [
-    { label: "Objects", value: "objects" },
+    { label: "Symbols", value: "symbols" },
     { label: "People", value: "people" },
-    { label: "Locations", value: "locations" },
-    { label: "History", value: "history" },
-    { label: "Celebrities", value: "celebrities" },
-    { label: "Politics", value: "politics" }
+    { label: "Archaeology", value: "archaeology" },
+    { label: "History", name: "history" },
+    { label: "Consciousness", name: "consciousness" },
+    { label: "Religon", value: "religon" }
   ];
   private mode = "create";
   private postId: string;
