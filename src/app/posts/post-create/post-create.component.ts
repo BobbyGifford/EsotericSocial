@@ -55,7 +55,8 @@ export class PostCreateComponent implements OnInit {
             title: postData.title,
             category: postData.category,
             content: postData.content,
-            imagePath: postData.imagePath
+            imagePath: postData.imagePath,
+            creator: postData.creator
           };
 
           // Change image default field
@@ -96,7 +97,8 @@ export class PostCreateComponent implements OnInit {
           title: this.form.value.title,
           content: this.form.value.content,
           category: this.form.value.category,
-          imagePath: null
+          imagePath: null,
+          creator: null
         },
         this.form.value.image
       );

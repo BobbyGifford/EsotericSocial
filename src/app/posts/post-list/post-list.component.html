@@ -23,7 +23,7 @@
     </div>
 
     <p>{{ post.category }}</p>
-    <mat-action-row *ngIf="userIsAuthenticated">
+    <mat-action-row *ngIf="userIsAuthenticated && userId === post.creator">
       <a [routerLink]="['/edit', post.id]" mat-button mat-raised-button>EDIT</a>
       <button
         color="warn"

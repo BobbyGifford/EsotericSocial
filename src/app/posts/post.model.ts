@@ -4,4 +4,5 @@ export interface PostModel {
   category: string;
   content: string;
   imagePath: any;
+  creator: string;
 }
