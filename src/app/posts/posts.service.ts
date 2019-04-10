@@ -40,7 +40,6 @@ export class PostsService {
         })
       )
       .subscribe(transfromedPostsData => {
-        console.log(transfromedPostsData);
         this.posts = transfromedPostsData.posts;
         this.postsUpdated.next({
           posts: [...this.posts],
