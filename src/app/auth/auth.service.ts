@@ -24,7 +24,8 @@ export class AuthService {
   }
 
   getUserId() {
-    return this.userId;
+    const userId = localStorage.getItem("userId");
+    return userId;
   }
 
   getAuthStatusListener() {
