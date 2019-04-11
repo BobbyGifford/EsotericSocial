@@ -41,6 +41,7 @@ yarn-error.log
 testem.log
 /typings
 dev.js
+nodemon.json
 
 # System Files
 .DS_Store

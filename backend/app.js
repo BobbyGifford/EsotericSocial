@@ -8,7 +8,10 @@ const userRoutes = require("./routes/user");
 const app = express();
 
 mongoose
-  .connect(keys.mongoURI, { useNewUrlParser: true, useCreateIndex: true })
+  .connect(`${process.env.MONGO_URI}`, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+  })
   .then(() => {
     console.log("Connected to db");
   })

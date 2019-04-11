@@ -1,10 +1,9 @@
 const jwt = require("jsonwebtoken");
-const { secret } = require("../config/keys");
 
 module.exports = (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
-    const decodedToken = jwt.verify(token, secret);
+    const decodedToken = jwt.verify(token, process.env.SECRET);
     req.userData = { email: decodedToken, userId: decodedToken.userId };
     next();
   } catch (error) {
