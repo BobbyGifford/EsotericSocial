@@ -34,10 +34,10 @@ exports.updatePost = (req, res, next) => {
   let imagePath = req.body.imagePath;
 
   if (req.file) {
-    const url = req.protocol + "://" + req.get("host");
-    // const url = process.env.AWS_IMAGE_URL;
-    imagePath = url + "/images/" + req.file.filename;
-    // imagePath = url + "/" + req.file.key;
+    // const url = req.protocol + "://" + req.get("host");
+    const url = process.env.AWS_IMAGE_URL;
+    // imagePath = url + "/images/" + req.file.filename;
+    imagePath = url + "/" + req.file.key;
   }
   const updateInfo = {
     title: req.body.title,
