@@ -18,8 +18,8 @@ export class PostCreateComponent implements OnInit, OnDestroy {
     { label: "Symbols", value: "symbols" },
     { label: "People", value: "people" },
     { label: "Archaeology", value: "archaeology" },
-    { label: "History", name: "history" },
-    { label: "Consciousness", name: "consciousness" },
+    { label: "History", value: "history" },
+    { label: "Consciousness", value: "consciousness" },
     { label: "Religon", value: "religon" }
   ];
   private mode = "create";

@@ -20,12 +20,12 @@ export class PostListComponent implements OnInit, OnDestroy {
   currentPage = 1;
   currentCategory = "all";
   categories = [
-    { label: "All", name: "all" },
+    { label: "All", value: "all" },
     { label: "Symbols", value: "symbols" },
-    { label: "People", name: "people" },
-    { label: "Archaeology", name: "archaeology" },
-    { label: "History", name: "history" },
-    { label: "Consciousness", name: "consciousness" },
+    { label: "People", value: "people" },
+    { label: "Archaeology", value: "archaeology" },
+    { label: "History", value: "history" },
+    { label: "Consciousness", value: "consciousness" },
     { label: "Religon", value: "religon" }
   ];
   private authStatusSub: Subscription;

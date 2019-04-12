@@ -1,12 +1,16 @@
 const PostModel = require("../models/post");
 
 exports.createPost = (req, res, next) => {
-  const url = req.protocol + "://" + req.get("host");
+  // const url = req.protocol + "://" + req.get("host");
+  console.log(req.file.key);
+
+  const url = process.env.AWS_IMAGE_URL;
   const post = new PostModel({
     title: req.body.title,
     category: req.body.category,
     content: req.body.content,
-    imagePath: url + "/images/" + req.file.filename,
+    // imagePath: url + "/images/" + req.file.filename,
+    imagePath: url + "/" + req.file.key,
     creator: req.userData.userId
   });
   post
@@ -16,11 +20,8 @@ exports.createPost = (req, res, next) => {
       res.status(201).json({
         message: "Post added successfully",
         post: {
-          id: result._id,
-          title: result._title,
-          content: result.content,
-          category: result.category,
-          imagePath: result.imagePath
+          ...result,
+          id: result._id
         }
       });
     })
@@ -34,7 +35,9 @@ exports.updatePost = (req, res, next) => {
 
   if (req.file) {
     const url = req.protocol + "://" + req.get("host");
+    // const url = process.env.AWS_IMAGE_URL;
     imagePath = url + "/images/" + req.file.filename;
+    // imagePath = url + "/" + req.file.key;
   }
   const updateInfo = {
     title: req.body.title,

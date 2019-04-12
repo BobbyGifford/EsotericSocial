@@ -6,7 +6,7 @@
       color="primary"
       selected
       *ngFor="let category of categories"
-      (click)="changeCategory(category.name)"
+      (click)="changeCategory(category.value)"
     >
       {{ category.label }}
     </mat-chip>
@@ -43,6 +43,6 @@
   (page)="onChangedPage($event)"
   *ngIf="posts.length > 0"
 ></mat-paginator>
-<p class="info-text mat-body-1" *ngIf="posts <= 0 && !isLoading">
+<p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading">
   No posts added yet
 </p>
